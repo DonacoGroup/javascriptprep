@@ -1,4 +1,4 @@
-import { describe, test, expect } from 'jest'
+/* eslint-disable no-undef */
 import { concepts } from '../../codes/concepts/concepts'
 
 describe('Concepts Tests', () => {
