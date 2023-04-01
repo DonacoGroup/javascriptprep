@@ -12,6 +12,6 @@ describe('Concepts Tests', () => {
     expect(concepts.removeDuplicates(['Android', 'iOS', 'Android', 'Web']).size).toBe(3)
     expect(concepts.removeDuplicates(projects.map(entry => entry.category)).size).toBe(4)
     expect(typeof concepts.removeDuplicates(projects.map(entry => entry.category))).toEqual('object')
-    expect(concepts.listProjectCategories(projects.map(entry => entry.category))).toEqual(['android', 'desktop', 'ios', 'web'])
+    expect(concepts.listProjectCategories(projects.map(entry => entry.category))).toEqual(['all', 'android', 'desktop', 'ios', 'web'])
   })
 })
