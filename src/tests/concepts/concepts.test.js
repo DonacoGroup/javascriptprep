@@ -11,6 +11,6 @@ describe('Concepts Tests', () => {
   test('Set|Unique values Tests with removeDuplicates()', () => {
     expect(concepts.removeDuplicates(['Android', 'iOS', 'Android', 'Web']).size).toBe(3)
     expect(concepts.removeDuplicates(projects.map(entry => entry.category)).size).toBe(4)
-    expect(typeof concepts.removeDuplicates(projects.map(entry => entry.category))).toEqual(object)
+    expect(typeof concepts.removeDuplicates(projects.map(entry => entry.category))).toEqual(Object)
   })
 })
