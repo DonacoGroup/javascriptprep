@@ -4,5 +4,15 @@ export const concepts = {
   // Set[Unique values] return an object of unique values
   removeDuplicates: (originalArray) => new Set((originalArray.map(entry => entry.toLowerCase())).sort()),
   // Set[Unique values] return an object of unique values
-  listProjectCategories: (originalArray) => ['all', ...new Set((originalArray.map(entry => entry.toLowerCase())).sort())]
+  listProjectCategories: (originalArray) => ['all', ...new Set((originalArray.map(entry => entry.toLowerCase())).sort())],
+  // Dynamic object creation by adding new key-value to the object
+  createDynamicObject: (newKey, newValue) => {
+    return {
+      [newKey]: newValue
+    }
+  },
+  addKeyValue: (originalObject, newKey, newValue) => {
+    originalObject[newKey] = newValue
+    return originalObject
+  }
 }

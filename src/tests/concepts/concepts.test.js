@@ -14,4 +14,12 @@ describe('Concepts Tests', () => {
     expect(typeof concepts.removeDuplicates(projects.map(entry => entry.category))).toEqual('object')
     expect(concepts.listProjectCategories(projects.map(entry => entry.category))).toEqual(['all', 'android', 'desktop', 'ios', 'web'])
   })
+
+  test('Dynamic object creation Tests with addKeyValue()', () => {
+    let dynamicObject = {}
+    dynamicObject = concepts.addKeyValue(dynamicObject, 'key', 'value')
+    expect(dynamicObject).toBeDefined()
+    expect(Object.keys(dynamicObject)).toContain('key')
+    expect(Object.values(dynamicObject)).toContain('value')
+  })
 })
