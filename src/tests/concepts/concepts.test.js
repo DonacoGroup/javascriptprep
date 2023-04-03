@@ -36,4 +36,10 @@ describe('Concepts Tests', () => {
     expect(concepts.findProject(projects, 'project 1')).toBeDefined()
     expect(concepts.findProject(projects, 'Project 0')).toBeUndefined()
   })
+
+  test('Reduce Method Tests with averageProjectsProfit()', () => {
+    expect(concepts.averageProjectsProfit(projects)).toEqual(10430)
+  })
+
+  // test('Description', () => {})
 })

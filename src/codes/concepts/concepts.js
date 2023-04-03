@@ -18,5 +18,7 @@ export const concepts = {
   // Filter returns a new array based on a specific condition or set of conditions
   filterProjects: (originalArray, filter) => originalArray.filter(entry => entry.category.toLowerCase() === filter.toLowerCase()),
   // Find returns the first single instance of (object or whatever) based on a specific condition or set of conditions, returns undefined if no match
-  findProject: (originalArray, search) => originalArray.find(entry => entry.name.toLowerCase() === search.toLowerCase())
+  findProject: (originalArray, search) => originalArray.find(entry => entry.name.toLowerCase() === search.toLowerCase()),
+  // Calculate average projects profit so far
+  averageProjectsProfit: (originalArray) => originalArray.reduce((avg, curr, _, { length }) => (avg + curr.profit / length), 0)
 }
