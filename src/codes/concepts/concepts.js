@@ -20,5 +20,11 @@ export const concepts = {
   // Find returns the first single instance of (object or whatever) based on a specific condition or set of conditions, returns undefined if no match
   findProject: (originalArray, search) => originalArray.find(entry => entry.name.toLowerCase() === search.toLowerCase()),
   // Calculate average projects profit so far
-  averageProjectsProfit: (originalArray) => originalArray.reduce((avg, curr, _, { length }) => (avg + curr.profit / length), 0)
+  averageProjectsProfit: (originalArray) => originalArray.reduce((avg, curr, _, { length }) => (avg + curr.profit / length), 0),
+  // Calculate and return sum and average of profits
+  calculateSumAverageOfProfits: (originalArray) => originalArray.reduce((result, entry, _, { length }) => {
+    result.profits += entry.profit
+    result.average = result.average + entry.profit / length
+    return result
+  }, { profits: 0, average: 0 })
 }
