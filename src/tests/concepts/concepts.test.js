@@ -3,6 +3,8 @@ import { concepts } from '../../codes/concepts/concepts'
 import { projects } from './concepts.data'
 
 describe('Concepts Tests', () => {
+  // test('Description', () => {})
+
   test('Map Method Tests with reverserArray()', () => {
     expect(concepts.reverseArray(['hello', 'world!'])).toHaveLength(2)
     expect(concepts.reverseArray(['hello', 'world!'])).toEqual(['olleh', '!dlrow'])
@@ -21,5 +23,17 @@ describe('Concepts Tests', () => {
     expect(dynamicObject).toBeDefined()
     expect(Object.keys(dynamicObject)).toContain('key')
     expect(Object.values(dynamicObject)).toContain('value')
+  })
+
+  test('Filter Method Tests with filterProjects()', () => {
+    expect(concepts.filterProjects(projects, 'Android')).toHaveLength(3)
+    expect(concepts.filterProjects(projects, 'android')).toHaveLength(3)
+    expect(concepts.filterProjects(projects, 'desktop')).toHaveLength(2)
+  })
+
+  test('Find Method Tests with findProject()', () => {
+    expect(concepts.findProject(projects, 'Project 1')).toBeDefined()
+    expect(concepts.findProject(projects, 'project 1')).toBeDefined()
+    expect(concepts.findProject(projects, 'Project 0')).toBeUndefined()
   })
 })

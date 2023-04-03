@@ -14,5 +14,9 @@ export const concepts = {
   addKeyValue: (originalObject, newKey, newValue) => {
     originalObject[newKey] = newValue
     return originalObject
-  }
+  },
+  // Filter returns a new array based on a specific condition or set of conditions
+  filterProjects: (originalArray, filter) => originalArray.filter(entry => entry.category.toLowerCase() === filter.toLowerCase()),
+  // Find returns the first single instance of (object or whatever) based on a specific condition or set of conditions, returns undefined if no match
+  findProject: (originalArray, search) => originalArray.find(entry => entry.name.toLowerCase() === search.toLowerCase())
 }
