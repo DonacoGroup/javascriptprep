@@ -39,6 +39,15 @@ describe('Concepts Tests', () => {
 
   test('Reduce Method Tests with averageProjectsProfit()', () => {
     expect(concepts.averageProjectsProfit(projects)).toEqual(10430)
+    expect(concepts.calculateSumAverageOfProfits(projects)).toEqual({ profits: 104300, average: 10430 })
+  })
+
+  test('Array Destructuring with swapValues()', () => {
+    let a = '1'
+    let b = '2';
+    [b, a] = concepts.swapValues(a, b)
+    expect(a).toEqual('2')
+    expect(b).toEqual('1')
   })
 
   // test('Description', () => {})
