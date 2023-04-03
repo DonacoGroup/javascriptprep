@@ -50,5 +50,9 @@ describe('Concepts Tests', () => {
     expect(b).toEqual('1')
   })
 
+  test('Object Destructuring with getProjectLead()', () => {
+    expect(concepts.getProjectLead(projects, 'Project 1')).toEqual('John DOE')
+    expect(concepts.getProjectLead(projects, 'project 1')).toEqual('John DOE')
+  })
   // test('Description', () => {})
 })

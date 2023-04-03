@@ -31,5 +31,10 @@ export const concepts = {
   swapValues: (param1, param2) => {
     [param2, param1] = [param1, param2]
     return [param2, param1]
+  },
+  // Get project lead to demonstrate object destructuring
+  getProjectLead: (originalArray, name) => {
+    const { team: { lead } } = originalArray.find(entry => entry.name.toLowerCase() === name.toLowerCase())
+    return lead
   }
 }
