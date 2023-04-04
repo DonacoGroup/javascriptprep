@@ -36,5 +36,15 @@ export const concepts = {
   getProjectLead: (originalArray, name) => {
     const { team: { lead } } = originalArray.find(entry => entry.name.toLowerCase() === name.toLowerCase())
     return lead
+  },
+  // List chunked projects to demonstrate Array.from concept
+  listChunkedProjects: (originalArray, chunkSize) => {
+    const projectsLength = originalArray.length
+    const chunksCount = Math.ceil(projectsLength / chunkSize)
+
+    return Array.from({ length: chunksCount }, (_, index) => {
+      const start = index * chunkSize
+      return originalArray.slice(start, start + chunkSize)
+    })
   }
 }

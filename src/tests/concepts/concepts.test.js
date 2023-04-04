@@ -54,5 +54,13 @@ describe('Concepts Tests', () => {
     expect(concepts.getProjectLead(projects, 'Project 1')).toEqual('John DOE')
     expect(concepts.getProjectLead(projects, 'project 1')).toEqual('John DOE')
   })
+
+  test('Chunking using Array.from with listChunkedProjects()', () => {
+    expect(concepts.listChunkedProjects(projects, 2)).toHaveLength(5)
+    expect(concepts.listChunkedProjects(projects, 3)).toHaveLength(4)
+    expect(concepts.listChunkedProjects(projects, 3)[3]).toHaveLength(1)
+    expect(concepts.listChunkedProjects(projects, 5)).toHaveLength(2)
+  })
+
   // test('Description', () => {})
 })
