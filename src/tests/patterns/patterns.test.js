@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
-import { UserFactory, ProcessManagerSingleton } from '../../codes/patterns/patterns'
+import { UserFactory, ProcessManagerSingleton, PaymentGateway } from '../../codes/patterns/patterns'
+import { VisaGateway, MastercardGateway, MTNMomoGateway, MOOVFloozGateway, Pay8Gateway } from '../../codes/patterns/patterns.utils'
 import { processes } from './patterns.data'
 
 describe('Patterns Tests', () => {
@@ -43,6 +44,38 @@ describe('Patterns Tests', () => {
     expect(pM1.processes[0].name).toEqual('AndroidStudio')
     expect(pM1.processes[0].state).toEqual('Pending')
     expect(pM1.processCount).toEqual(2)
+  })
+
+  test('Strategy Dsign Pattern Tests with PaymentGateway class', () => {
+    PaymentGateway.setStrategy(new VisaGateway())
+    const visaResult = PaymentGateway.pay(12)
+    expect(visaResult).toBeDefined()
+    expect(visaResult.includes('Visa')).toBeTruthy()
+    expect(visaResult).toEqual('pay 12.48 USD bill with Visa')
+
+    PaymentGateway.setStrategy(new MastercardGateway())
+    const mastercardResult = PaymentGateway.pay(12)
+    expect(mastercardResult).toBeDefined()
+    expect(mastercardResult.includes('Mastercard')).toBeTruthy()
+    expect(mastercardResult).toEqual('pay 12.48 USDbill with Mastercard')
+
+    PaymentGateway.setStrategy(new MTNMomoGateway())
+    const mtnmomoResult = PaymentGateway.pay(12)
+    expect(mtnmomoResult).toBeDefined()
+    expect(mtnmomoResult.includes('MTNMomo')).toBeTruthy()
+    expect(mtnmomoResult).toEqual('pay 12.347999999999999 XOF bill with MTNMomo')
+
+    PaymentGateway.setStrategy(new MOOVFloozGateway())
+    const moovfloozResult = PaymentGateway.pay(12)
+    expect(moovfloozResult).toBeDefined()
+    expect(moovfloozResult.includes('MOOVFlooz')).toBeTruthy()
+    expect(moovfloozResult).toEqual('pay 12.227999999999998 XOF bill with MOOVFlooz')
+
+    PaymentGateway.setStrategy(new Pay8Gateway())
+    const pay8Result = PaymentGateway.pay(12)
+    expect(pay8Result).toBeDefined()
+    expect(pay8Result.includes('Pay8')).toBeTruthy()
+    expect(pay8Result).toEqual('pay 12.120000000000001 Units bill with Pay8')
   })
 
   // test('Description', () => {})

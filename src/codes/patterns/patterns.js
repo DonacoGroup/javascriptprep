@@ -1,4 +1,4 @@
-import { Talent, Merchant, Investor, Process, ProcessManager } from './patterns.utils'
+import { Talent, Merchant, Investor, ProcessManager } from './patterns.utils'
 
 // Create a UserFactory class to create types of User to demonstrate Factory Design Pattern
 export class UserFactory {
@@ -30,5 +30,20 @@ export class ProcessManagerSingleton {
 
   static getProcessManager = () => {
     return this.processManager ? this.processManager : this.createProcessManager()
+  }
+}
+
+// Create PaymentGateway class to demonstrate the Strategy Design Pattern
+export class PaymentGateway {
+  constructor () {
+    this.gateway = null
+  }
+
+  static setStrategy = (gateway) => {
+    this.gateway = gateway
+  }
+
+  static pay = (amount) => {
+    return this.gateway.pay(amount)
   }
 }
