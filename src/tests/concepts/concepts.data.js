@@ -18,3 +18,4 @@ export const projects = [
   { name: 'Project 9', category: 'iOS', team: { engineers: ['Nicolas', 'Amos'], lead: 'Jane DOE' }, profit: 15000, startedAt: subMonths(today, 4), endedAt: subMonths(today, 1) },
   { name: 'Project 10', category: 'Android', team: { engineers: ['Paul', 'Stanley', 'Tchegoun'], lead: 'Festus DOE' }, profit: 25000, startedAt: subMonths(today, 1), endedAt: addMonths(today, 5) }
 ]
+// promise.then(data => console.log(data.text)).catch(err => console.error(err))
