@@ -46,5 +46,17 @@ export const concepts = {
       const start = index * chunkSize
       return originalArray.slice(start, start + chunkSize)
     })
-  }
+  },
+  // Create promise
+  createPromise: () => new Promise((resolve, reject) => {
+    const luck = 1
+    // Uncomment lines to test
+    const random = Math.floor(Math.random() * 3)
+
+    if (random === luck) {
+      resolve({ text: 'Hello World!' })
+    } else {
+      reject(new Error('Something went wrong!'))
+    }
+  })
 }
