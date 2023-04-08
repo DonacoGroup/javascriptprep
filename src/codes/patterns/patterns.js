@@ -47,3 +47,35 @@ export class PaymentGateway {
     return this.gateway.pay(amount)
   }
 }
+
+// Create ProjectIterator class to iterate through projects to demonstrate Iterator Design Pattern
+export class ProjectIterator {
+  constructor (items) {
+    this.items = items
+    this.index = 0
+  }
+
+  // Check if there is a next item present in items or whether we've reach the end of the list
+  hasNext = () => {
+    return this.index < this.items.length
+  }
+
+  // Get next element
+  next = () => {
+    return this.items[this.index++]
+  }
+}
+
+const MyIterator = new ProjectIterator([1, 2, 3, 4])
+console.log(MyIterator.hasNext())
+console.log(MyIterator.next())
+console.log(MyIterator.hasNext())
+console.log(MyIterator.next())
+console.log(MyIterator.hasNext())
+console.log(MyIterator.next())
+console.log(MyIterator.hasNext())
+console.log(MyIterator.next())
+console.log(MyIterator.hasNext())
+console.log(MyIterator.next())
+console.log(MyIterator.hasNext())
+console.log(MyIterator.next())

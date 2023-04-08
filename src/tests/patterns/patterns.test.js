@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { UserFactory, ProcessManagerSingleton, PaymentGateway } from '../../codes/patterns/patterns'
+import { UserFactory, ProcessManagerSingleton, PaymentGateway, ProjectIterator } from '../../codes/patterns/patterns'
 import { VisaGateway, MastercardGateway, MTNMomoGateway, MOOVFloozGateway, Pay8Gateway } from '../../codes/patterns/patterns.utils'
 import { processes } from './patterns.data'
 
@@ -78,5 +78,18 @@ describe('Patterns Tests', () => {
     expect(pay8Result).toEqual('pay 12.120000000000001 Units bill with Pay8')
   })
 
+  test('Iterator Design Pattern Tests with Iterator class', () => {
+    const MyIterator = new ProjectIterator([1, 2, 3, 4])
+    expect(MyIterator.hasNext()).toBeTruthy()
+    expect(MyIterator.next()).toEqual(1)
+    expect(MyIterator.hasNext()).toBeTruthy()
+    expect(MyIterator.next()).toEqual(2)
+    expect(MyIterator.hasNext()).toBeTruthy()
+    expect(MyIterator.next()).toEqual(3)
+    expect(MyIterator.hasNext()).toBeTruthy()
+    expect(MyIterator.next()).toEqual(4)
+    expect(MyIterator.hasNext()).toBeFalsy()
+    expect(MyIterator.next()).not.toBeDefined()
+  })
   // test('Description', () => {})
 })
