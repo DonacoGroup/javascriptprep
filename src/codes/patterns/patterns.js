@@ -65,17 +65,3 @@ export class ProjectIterator {
     return this.items[this.index++]
   }
 }
-
-const MyIterator = new ProjectIterator([1, 2, 3, 4])
-console.log(MyIterator.hasNext())
-console.log(MyIterator.next())
-console.log(MyIterator.hasNext())
-console.log(MyIterator.next())
-console.log(MyIterator.hasNext())
-console.log(MyIterator.next())
-console.log(MyIterator.hasNext())
-console.log(MyIterator.next())
-console.log(MyIterator.hasNext())
-console.log(MyIterator.next())
-console.log(MyIterator.hasNext())
-console.log(MyIterator.next())
