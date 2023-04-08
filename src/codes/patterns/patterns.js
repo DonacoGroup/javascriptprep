@@ -65,3 +65,25 @@ export class ProjectIterator {
     return this.items[this.index++]
   }
 }
+
+// Create ProjectEventProducer class that notifies or call consumers of events on projects to demonstrate Observer Design Pattern
+export class ProjectEventProducer {
+  constructor () {
+    this.consumers = []
+  }
+
+  // Subscribe a consumer
+  subscribe = (fn) => {
+    this.consumers.push(fn)
+  }
+
+  // Unsubscribe a consumer
+  unsubscribe = (fnToUnsubscribe) => {
+    this.consumers = this.consumers.filter((fn) => fn !== fnToUnsubscribe)
+  }
+
+  // Notify consumers
+  notify = () => {
+    this.consumers.forEach((fn) => fn.call())
+  }
+}

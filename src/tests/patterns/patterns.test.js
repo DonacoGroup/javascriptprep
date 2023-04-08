@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { UserFactory, ProcessManagerSingleton, PaymentGateway, ProjectIterator } from '../../codes/patterns/patterns'
+import { UserFactory, ProcessManagerSingleton, PaymentGateway, ProjectIterator, ProjectEventProducer } from '../../codes/patterns/patterns'
 import { VisaGateway, MastercardGateway, MTNMomoGateway, MOOVFloozGateway, Pay8Gateway } from '../../codes/patterns/patterns.utils'
 import { processes } from './patterns.data'
 
@@ -90,6 +90,35 @@ describe('Patterns Tests', () => {
     expect(MyIterator.next()).toEqual(4)
     expect(MyIterator.hasNext()).toBeFalsy()
     expect(MyIterator.next()).not.toBeDefined()
+  })
+
+  test('Observer Design Pattern with ProjectEventProducer class', () => {
+    const MyProducer = new ProjectEventProducer()
+    let calls = []
+    const consumer1 = () => { calls.push('I am consumer 1') }
+    const consumer2 = () => { calls.push('I am consumer 2') }
+    const consumer3 = () => { calls.push('I am consumer 3') }
+    const consumer4 = () => { calls.push('I am consumer 4') }
+    MyProducer.subscribe(consumer1)
+    MyProducer.subscribe(consumer2)
+    MyProducer.subscribe(consumer3)
+    MyProducer.subscribe(consumer4)
+    MyProducer.notify()
+    expect(calls).toHaveLength(4)
+    expect(calls[0]).toEqual('I am consumer 1')
+    expect(calls).toContain('I am consumer 1')
+    expect(calls).toContain('I am consumer 2')
+    expect(calls).toContain('I am consumer 3')
+    expect(calls).toContain('I am consumer 4')
+    calls = []
+    MyProducer.unsubscribe(consumer4)
+    MyProducer.notify()
+    expect(calls).toHaveLength(3)
+    expect(calls[2]).toEqual('I am consumer 3')
+    expect(calls).toContain('I am consumer 1')
+    expect(calls).toContain('I am consumer 2')
+    expect(calls).toContain('I am consumer 3')
+    expect(calls).not.toContain('I am consumer 4')
   })
   // test('Description', () => {})
 })
