@@ -87,3 +87,24 @@ export class ProjectEventProducer {
     this.consumers.forEach((fn) => fn.call())
   }
 }
+
+// Create ProjectAPIProxy class that caches successfull network response for efficient use of bandwidth to demonstrate Proxy Design Pattern
+export class ProjectAPIProxy {
+  constructor () {
+    this.cache = {}
+  }
+
+  // Call API endpoint function
+  fetch = (endpointFn) => {
+    // If cache does not contain specific key ie name of endpointFn
+    if (!Object.keys(this.cache).includes(endpointFn.name)) {
+      // Make the call to the endpointFn
+      const response = endpointFn.call()
+      this.cache[endpointFn.name] = response
+      return response
+    } else {
+      // Else return its cached response
+      return this.cache[endpointFn.name]
+    }
+  }
+}

@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { UserFactory, ProcessManagerSingleton, PaymentGateway, ProjectIterator, ProjectEventProducer } from '../../codes/patterns/patterns'
+import { UserFactory, ProcessManagerSingleton, PaymentGateway, ProjectIterator, ProjectEventProducer, ProjectAPIProxy } from '../../codes/patterns/patterns'
 import { VisaGateway, MastercardGateway, MTNMomoGateway, MOOVFloozGateway, Pay8Gateway } from '../../codes/patterns/patterns.utils'
 import { processes } from './patterns.data'
 
@@ -119,6 +119,44 @@ describe('Patterns Tests', () => {
     expect(calls).toContain('I am consumer 2')
     expect(calls).toContain('I am consumer 3')
     expect(calls).not.toContain('I am consumer 4')
+  })
+
+  test('Proxy Design Pattern Tests with ProjectAPIProxy class', async () => {
+    const endpointFn1 = () => {
+      setTimeout(() => { }, 200)
+      return 'fn1'
+    }
+    const endpointFn2 = () => {
+      setTimeout(() => { }, 250)
+      return 'fn2'
+    }
+    const MyProjectAPIProxy = new ProjectAPIProxy()
+
+    const timestamps = []
+    const values = []
+    timestamps[0] = Date.now()
+    values[0] = await MyProjectAPIProxy.fetch(endpointFn1)
+    timestamps[1] = Date.now()
+
+    timestamps[2] = Date.now()
+    values[1] = await MyProjectAPIProxy.fetch(endpointFn1)
+    timestamps[3] = Date.now()
+
+    expect(timestamps[1] - timestamps[0]).toBeGreaterThanOrEqual(timestamps[3] - timestamps[2])
+    expect(values[0]).toEqual('fn1')
+    expect(values[0]).toEqual(values[1])
+
+    timestamps[4] = Date.now()
+    values[2] = await MyProjectAPIProxy.fetch(endpointFn2)
+    timestamps[5] = Date.now()
+
+    timestamps[6] = Date.now()
+    values[3] = await MyProjectAPIProxy.fetch(endpointFn2)
+    timestamps[7] = Date.now()
+
+    expect(timestamps[5] - timestamps[4]).toBeGreaterThanOrEqual(timestamps[7] - timestamps[6])
+    expect(values[2]).toEqual('fn2')
+    expect(values[2]).toEqual(values[3])
   })
   // test('Description', () => {})
 })
