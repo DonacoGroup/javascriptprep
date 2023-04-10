@@ -175,3 +175,21 @@ export class Member {
     this.chatrooms.push(chatroom)
   }
 }
+
+// Create Product class, that accepts useHalfCoupon; useThirdCoupon, useFourthCoupon functions to apply coupon to Product on checkout to demonstrate Visitor Design Pattern
+export class Product {
+  constructor (name, description, price) {
+    this.name = name
+    this.description = description
+    this.price = price
+  }
+
+  // Getters and Setters
+  getPrice = () => { return this.price }
+  setPrice = (price) => { this.price = price }
+  accept = (visitorFn) => { visitorFn(this) }
+}
+
+export const useHalfCoupon = (product) => { product.setPrice(product.getPrice() - (product.getPrice() * 0.5)) }
+export const useThirdCoupon = (product) => { product.setPrice(product.getPrice() - (product.getPrice() * 0.33)) }
+export const useFourthCoupon = (product) => { product.setPrice(product.getPrice() - (product.getPrice() * 0.25)) }

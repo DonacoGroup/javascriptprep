@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { UserFactory, ProcessManagerSingleton, PaymentGateway, ProjectIterator, ProjectEventProducer, ProjectAPIProxy, ChatRoom, Member, Message } from '../../codes/patterns/patterns'
+import { UserFactory, ProcessManagerSingleton, PaymentGateway, ProjectIterator, ProjectEventProducer, ProjectAPIProxy, ChatRoom, Member, Product, useFourthCoupon, useThirdCoupon, useHalfCoupon } from '../../codes/patterns/patterns'
 import { VisaGateway, MastercardGateway, MTNMomoGateway, MOOVFloozGateway, Pay8Gateway } from '../../codes/patterns/patterns.utils'
 import { processes } from './patterns.data'
 
@@ -172,6 +172,20 @@ describe('Patterns Tests', () => {
     // expect(chatroom1).toEqual(chatroom2)
     expect(chatroom1.name).toEqual(`chatroom_${member1.name}_${member2.name}`.toLowerCase())
     expect(chatroom1.name).toEqual(chatroom2.name)
+  })
+
+  test('Visitor Design Pattern Tests with Product class', () => {
+    const mlBook = new Product('Enterprise Machine Learning', 'A machine learning book for enriching enterprise product', 100)
+    expect(mlBook.getPrice()).toEqual(100)
+
+    mlBook.accept(useHalfCoupon)
+    expect(mlBook.getPrice()).toEqual(50)
+
+    mlBook.accept(useThirdCoupon)
+    expect(mlBook.getPrice()).toEqual(33.5)
+
+    mlBook.accept(useFourthCoupon)
+    expect(mlBook.getPrice()).toEqual(25.125)
   })
   // test('Description', () => {})
 })
