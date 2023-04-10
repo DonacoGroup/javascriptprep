@@ -108,3 +108,70 @@ export class ProjectAPIProxy {
     }
   }
 }
+
+// Create ChatRoom class that manages conversations between members to demonstrate Mediator Design Pattern
+export class ChatRoom {
+  constructor (name) {
+    this.name = name
+    this.members = []
+    this.messages = []
+  }
+
+  // Add members to chatroom
+  addMembers = (...members) => {
+    members.forEach(member => this.members.push(member))
+  }
+
+  // Send message to chatroom members
+  send = (message, fromMember, toMember) => {
+    const messageSent = new Message(message, fromMember, toMember)
+    this.messages.push(messageSent)
+    this.receive(messageSent)
+  }
+
+  // Receive message from member
+  receive = (message) => {
+    // Recipient is called upon to save this chatroom in his chatrooms records
+    const recipient = this.members.find(member => member.name === message.to.name)
+    recipient.receive(message, this)
+  }
+}
+
+export class Message {
+  constructor (content, from, to) {
+    this.content = content
+    this.from = from
+    this.to = to
+  }
+}
+
+export class Member {
+  constructor (name) {
+    this.name = name.replace(/\s+/g, '_').toLowerCase()
+    this.chatrooms = []
+  }
+
+  // Send message to member
+  send = (message, toMember) => {
+    // If chatroom exists then proceed else create it
+    let chatroom
+    const chatRoomNames = [`chatroom_${this.name}_${toMember.name}`.toLowerCase(), `chatroom_${toMember.name}_${this.name}`.toLowerCase()]
+    if (this.chatrooms.length > 0) {
+      chatroom = this.chatrooms.find(chatroom => chatRoomNames.includes(chatroom.name))
+    }
+    if (!chatroom) {
+      chatroom = new ChatRoom(chatRoomNames[0])
+      chatroom.addMembers(this, toMember)
+    }
+    // Use the chatroom as mediator
+    chatroom.send(message, this, toMember)
+    this.chatrooms.push(chatroom)
+    return chatroom
+  }
+
+  // Receive a message
+  receive = (message, chatroom) => {
+    // console.log(`Message received: ${message.content} from ${message.from.name}`)
+    this.chatrooms.push(chatroom)
+  }
+}

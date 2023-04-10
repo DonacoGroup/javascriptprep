@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { UserFactory, ProcessManagerSingleton, PaymentGateway, ProjectIterator, ProjectEventProducer, ProjectAPIProxy } from '../../codes/patterns/patterns'
+import { UserFactory, ProcessManagerSingleton, PaymentGateway, ProjectIterator, ProjectEventProducer, ProjectAPIProxy, ChatRoom, Member, Message } from '../../codes/patterns/patterns'
 import { VisaGateway, MastercardGateway, MTNMomoGateway, MOOVFloozGateway, Pay8Gateway } from '../../codes/patterns/patterns.utils'
 import { processes } from './patterns.data'
 
@@ -157,6 +157,21 @@ describe('Patterns Tests', () => {
     expect(timestamps[5] - timestamps[4]).toBeGreaterThanOrEqual(timestamps[7] - timestamps[6])
     expect(values[2]).toEqual('fn2')
     expect(values[2]).toEqual(values[3])
+  })
+
+  test('Mediator Design Pattern Tests with ChatRoom class', () => {
+    // Create 2 members
+    const member1 = new Member('Member 1')
+    const member2 = new Member('Member 2')
+    // Member 1 sends message to Member 2 (This is their first conversation, a chatroom needs to be created with this 2 as members)
+    const chatroom1 = member1.send('Hello Member 2', member2)
+    // Member 2  replies to his message
+    const chatroom2 = member2.send('Hi Member 1', member1)
+    // Testing chatrooms
+    expect(typeof chatroom1).toEqual(typeof new ChatRoom('1'))
+    // expect(chatroom1).toEqual(chatroom2)
+    expect(chatroom1.name).toEqual(`chatroom_${member1.name}_${member2.name}`.toLowerCase())
+    expect(chatroom1.name).toEqual(chatroom2.name)
   })
   // test('Description', () => {})
 })
