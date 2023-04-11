@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="buttons"></div>
+  <script>
+      
+  const createButtons = () => {
+    for (let i = 1; i <= 5; i++) {
+      const buttonsContainer = document.querySelector('#buttons')
+      const button = document.createElement('button')
+      button.innerHTML = 'Button ' + i
+      // Create a private scope for button.onclick instruction to demonstrate IIFE(Immediately Invoked FUnction Expression)
+      (button.onclick = function () {
+        alert('This is button ' + i)
+      })(i)
+      buttonsContainer.appendChild(button)
+    }
+  }
+  createButtons()
+  </script>
+</body>
+</html>
