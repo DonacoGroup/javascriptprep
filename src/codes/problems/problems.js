@@ -1,5 +1,5 @@
 export const problems = {
-  // Solve Triple Add Function Probleme using a couriering function
+  // Solve Triple Add Function Probleme using a currying function
   tripleAdd: (firstParam) => {
     // return a function to be invoked with the secondValue
     return (secondParam) => {
