@@ -9,5 +9,15 @@ export const problems = {
         return firstParam + secondParam + thirdValue
       }
     }
+  },
+  // Solve the using a closure
+  trackCalls: (param) => {
+    // Declare and initialize the counter
+    let counter = 0
+    // Closure function that keeps track of the count and return function output and count
+    return () => {
+      counter++
+      return { output: param * param, counter }
+    }
   }
 }
