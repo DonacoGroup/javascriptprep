@@ -11,13 +11,13 @@ export const problems = {
     }
   },
   // Solve the the function that tracks its own calls using a closure
-  trackCalls: (param) => {
+  trackCalls: () => {
     // Declare and initialize the counter
     let counter = 0
     // Closure function that keeps track of the count and return function output and count
     return () => {
       counter++
-      return { output: param * param, counter }
+      return { output: '', counter }
     }
   }
 }
