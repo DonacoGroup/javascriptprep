@@ -1,4 +1,5 @@
 export const problems = {
+  // Solve Triple Add Function Probleme using a couriering function
   tripleAdd: (firstParam) => {
     // return a function to be invoked with the secondValue
     return (secondParam) => {
