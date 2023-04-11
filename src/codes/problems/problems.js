@@ -10,7 +10,7 @@ export const problems = {
       }
     }
   },
-  // Solve the using a closure
+  // Solve the the function that tracks its own calls using a closure
   trackCalls: (param) => {
     // Declare and initialize the counter
     let counter = 0
