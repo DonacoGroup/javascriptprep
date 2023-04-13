@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 import { problems } from '../../codes/problems/problems'
+import { Stack } from '../../codes/problems/problems.utils'
 
 describe('Problems Tests', () => {
   test('TripleAdd Function Problem Tests', () => {
@@ -35,6 +36,45 @@ describe('Problems Tests', () => {
     expect(problems.solvePalindromeWithArray('A Santa, at NASA!')).toBeTruthy()
     expect(problems.solvePalindromeWithArray('Was it a car or a cat I saw?')).toBeTruthy()
     expect(problems.solvePalindromeWithArray('Madam, in Eden, I\'m Adam.')).toBeTruthy()
+  })
+
+  test('Palindrome Problem Tests with Stack class and solvePalindromeWithStack() ', () => {
+    const stack = new Stack()
+    stack.push(1)
+    expect(stack.peek()).toEqual(1)
+    stack.push(2)
+    expect(stack.peek()).toEqual(2)
+    stack.push(3)
+    expect(stack.peek()).toEqual(3)
+    expect(stack.pop()).toEqual(3)
+    expect(stack.peek()).toEqual(2)
+    expect(stack.pop()).toEqual(2)
+    expect(stack.peek()).toEqual(1)
+    expect(stack.pop()).toEqual(1)
+    expect(stack.peek()).toEqual(undefined)
+    expect(stack.items()).toHaveLength(3)
+    expect(stack.size()).toEqual(0)
+    expect(problems.solvePalindromeWithStack('Mia')).toBeFalsy()
+    expect(problems.solvePalindromeWithStack('Level')).toBeTruthy()
+    expect(problems.solvePalindromeWithStack('Racecar')).toBeTruthy()
+    expect(problems.solvePalindromeWithStack('Madam')).toBeTruthy()
+    expect(problems.solvePalindromeWithStack('Radar')).toBeTruthy()
+    expect(problems.solvePalindromeWithStack('Deified')).toBeTruthy()
+    expect(problems.solvePalindromeWithStack('Civic')).toBeTruthy()
+    expect(problems.solvePalindromeWithStack('Noon')).toBeTruthy()
+    expect(problems.solvePalindromeWithStack('Kayak')).toBeTruthy()
+    expect(problems.solvePalindromeWithStack('Hannah')).toBeTruthy()
+    expect(problems.solvePalindromeWithStack('Refer')).toBeTruthy()
+    expect(problems.solvePalindromeWithStack('Rotator')).toBeTruthy()
+    expect(problems.solvePalindromeWithStack('Pop')).toBeTruthy()
+    expect(problems.solvePalindromeWithStack('Mom')).toBeTruthy()
+    expect(problems.solvePalindromeWithStack('Dad')).toBeTruthy()
+    expect(problems.solvePalindromeWithStack('Eye')).toBeTruthy()
+    expect(problems.solvePalindromeWithStack('A man, a plan, a canal, Panama!')).toBeTruthy()
+    expect(problems.solvePalindromeWithStack('Never odd or even')).toBeTruthy()
+    expect(problems.solvePalindromeWithStack('A Santa, at NASA!')).toBeTruthy()
+    expect(problems.solvePalindromeWithStack('Was it a car or a cat I saw?')).toBeTruthy()
+    expect(problems.solvePalindromeWithStack('Madam, in Eden, I\'m Adam.')).toBeTruthy()
   })
   // test('Description', () => {})
 })
