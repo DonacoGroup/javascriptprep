@@ -19,5 +19,7 @@ export const problems = {
       counter++
       return { output: '', counter }
     }
-  }
+  },
+  // Solve Palindrome Problem using default javascript Array features
+  solvePalindromeWithArray: (phrase) => [...phrase].reverse().join('').replace(/[\s,;.!?/:']/g, '').toLocaleLowerCase() === phrase.replace(/[\s,;.!?/:']/g, '').toLocaleLowerCase()
 }
