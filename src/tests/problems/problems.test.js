@@ -2,16 +2,39 @@
 import { problems } from '../../codes/problems/problems'
 
 describe('Problems Tests', () => {
-  test('TripleAdd Function Problem', () => {
+  test('TripleAdd Function Problem Tests', () => {
     expect(problems.tripleAdd(10)(20)(30)).toEqual(60)
   })
-  test('Track Calls Function Problem', () => {
+  test('Track Calls Function Problem Tests', () => {
     const firstInstance = problems.trackCalls()
     const secondInstance = problems.trackCalls()
     expect(firstInstance().counter).toEqual(1)
     expect(firstInstance().counter).toEqual(2)
     expect(secondInstance().counter).toEqual(1)
     expect(secondInstance().counter).toEqual(2)
+  })
+  test('Palindrome Problem Tests', () => {
+    expect(problems.solvePalindromeWithArray('Mia')).toBeFalsy()
+    expect(problems.solvePalindromeWithArray('Level')).toBeTruthy()
+    expect(problems.solvePalindromeWithArray('Racecar')).toBeTruthy()
+    expect(problems.solvePalindromeWithArray('Madam')).toBeTruthy()
+    expect(problems.solvePalindromeWithArray('Radar')).toBeTruthy()
+    expect(problems.solvePalindromeWithArray('Deified')).toBeTruthy()
+    expect(problems.solvePalindromeWithArray('Civic')).toBeTruthy()
+    expect(problems.solvePalindromeWithArray('Noon')).toBeTruthy()
+    expect(problems.solvePalindromeWithArray('Kayak')).toBeTruthy()
+    expect(problems.solvePalindromeWithArray('Hannah')).toBeTruthy()
+    expect(problems.solvePalindromeWithArray('Refer')).toBeTruthy()
+    expect(problems.solvePalindromeWithArray('Rotator')).toBeTruthy()
+    expect(problems.solvePalindromeWithArray('Pop')).toBeTruthy()
+    expect(problems.solvePalindromeWithArray('Mom')).toBeTruthy()
+    expect(problems.solvePalindromeWithArray('Dad')).toBeTruthy()
+    expect(problems.solvePalindromeWithArray('Eye')).toBeTruthy()
+    expect(problems.solvePalindromeWithArray('A man, a plan, a canal, Panama!')).toBeTruthy()
+    expect(problems.solvePalindromeWithArray('Never odd or even')).toBeTruthy()
+    expect(problems.solvePalindromeWithArray('A Santa, at NASA!')).toBeTruthy()
+    expect(problems.solvePalindromeWithArray('Was it a car or a cat I saw?')).toBeTruthy()
+    expect(problems.solvePalindromeWithArray('Madam, in Eden, I\'m Adam.')).toBeTruthy()
   })
   // test('Description', () => {})
 })
