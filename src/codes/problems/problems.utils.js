@@ -136,3 +136,34 @@ export class CustomSet {
     return this.items().every((item) => secondSet.has(item))
   }
 }
+
+// Create a queue
+export class Queue {
+  constructor () {
+    this.collection = []
+  }
+
+  // Get queue items
+  items = () => this.collection
+
+  // Get queue size
+  size = () => this.collection.length
+
+  // Check if queue is empty
+  isEmpty = () => this.collection.length === 0
+
+  // Contains item
+  has = (item) => this.collection.includes(item)
+
+  // Add item to queue
+  enqueue = (item) => this.collection.push(item)
+
+  // Remove item from the queue
+  dequeue = () => this.collection.shift()
+
+  // Take a peek at the item at the front of the queue
+  peek = () => this.collection[0]
+
+  // Take a peek at the item at the end of the queue
+  tail = () => this.collection[this.collection.length - 1]
+}

@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import { problems } from '../../codes/problems/problems'
-import { Stack, CustomSet } from '../../codes/problems/problems.utils'
+import { Stack, Queue, CustomSet } from '../../codes/problems/problems.utils'
 
 describe('Problems Tests', () => {
   test('TripleAdd Function Problem Tests', () => {
@@ -112,5 +112,30 @@ describe('Problems Tests', () => {
     expect(customSet1.subset(customSet2)).toBeFalsy()
     expect(customSet1.subset(customSet1.union(customSet2))).toBeTruthy()
   })
+
+  test('Custom Queue Implementation Tests with Queue class', () => {
+    const customQueue = new Queue()
+    expect(customQueue.isEmpty()).toBeTruthy()
+    expect(customQueue.has(1)).toBeFalsy()
+    expect(customQueue.enqueue(1)).toEqual(1)
+    expect(customQueue.enqueue(2)).toEqual(2)
+    expect(customQueue.enqueue(3)).toEqual(3)
+    expect(customQueue.enqueue(4)).toEqual(4)
+    expect(customQueue.has(1)).toBeTruthy()
+    expect(customQueue.items()).toHaveLength(4)
+    expect(customQueue.size()).toEqual(4)
+    expect(customQueue.isEmpty()).toBeFalsy()
+    expect(customQueue.peek()).toEqual(1)
+    expect(customQueue.tail()).toEqual(4)
+    expect(customQueue.dequeue()).toEqual(1)
+    expect(customQueue.dequeue()).toEqual(2)
+    expect(customQueue.size()).toEqual(2)
+    expect(customQueue.has(1)).toBeFalsy()
+    expect(customQueue.has(2)).toBeFalsy()
+    expect(customQueue.has(3)).toBeTruthy()
+    expect(customQueue.has(4)).toBeTruthy()
+    expect(customQueue.items()).toHaveLength(2)
+  })
+
   // test('Description', () => {})
 })
