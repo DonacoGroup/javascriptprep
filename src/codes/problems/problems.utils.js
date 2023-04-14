@@ -212,3 +212,94 @@ export class PriorityQueue extends Queue {
     return true
   }
 }
+
+// Create tree's node class
+export class TreeNode {
+  constructor (data, left = null, right = null) {
+    this.data = data
+    this.left = left
+    this.right = right
+  }
+}
+
+// Create a binary search tree
+export class BinarySearchTree {
+  constructor (root = null) {
+    this.root = root
+  }
+
+  // Check if empty 
+  isEmpty = () => this.root === null
+
+  // Traverse the tree to find where to insert the data
+  insert = (node, data) => {
+    if (data < node.data) {
+      if (node.left === null) {
+        node.left = new TreeNode(data)
+      } else {
+        return this.insert(node.left, data)
+      }
+    } else if (data > node.data) {
+      if (node.right === null) {
+        node.right = new TreeNode(data)
+      } else {
+        return this.insert(node.right, data)
+      }
+    }
+  }
+
+  // Add data to the binary search tree
+  add = (data) => {
+    // If there is no root in the tree, then add data as node
+    if (this.root === null) {
+      this.root = new TreeNode(data)
+    } else {
+      this.insert(this.root, data)
+    }
+  }
+
+  // Find min value in tree
+  min = () => {
+    let current = this.root
+    while (current.left !== null) {
+      current = current.left
+    }
+    return current.data
+  }
+
+  // Find maximum value in tree
+  max = () => {
+    let current = this.root
+    while (current.right !== null) {
+      current = current.right
+    }
+    return current.data
+  }
+
+  // Find data
+  find = (node, data) => {
+    let current = node
+    if (data < current.data) {
+      current = current.left
+      if (current.data === data) {
+        return current
+      }
+    } else if (data > current.data) {
+      current = current.right
+      if (current.data === data) {
+        return current
+      }
+    }
+    return this.find(current, data)
+  }
+
+  // Search data
+  search = (data) => {
+    if (this.root && this.root.data === data) {
+      return this.root
+    } else {
+      return this.find(this.root, data)
+    }
+  }
+  // Remove data
+}

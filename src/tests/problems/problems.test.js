@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import { problems } from '../../codes/problems/problems'
-import { Stack, Queue, PriorityQueue, CustomSet } from '../../codes/problems/problems.utils'
+import { Stack, Queue, PriorityQueue, CustomSet, BinarySearchTree } from '../../codes/problems/problems.utils'
 
 describe('Problems Tests', () => {
   test('TripleAdd Function Problem Tests', () => {
@@ -172,6 +172,33 @@ describe('Problems Tests', () => {
     expect(pQueue.dequeue()).toEqual({ value: 1, priority: 0 })
     expect(pQueue.peek()).toEqual({ value: 10, priority: 0 })
     expect(pQueue.tail()).toEqual({ value: 5, priority: 5 })
+  })
+
+  test('Custom Binary Search Tree implementation with BinarySearchTree class', () => {
+    const bst = new BinarySearchTree()
+    bst.add(50)
+    bst.add(17)
+    bst.add(72)
+    bst.add(12)
+    bst.add(23)
+    bst.add(54)
+    bst.add(76)
+    bst.add(67)
+    bst.add(19)
+    bst.add(14)
+    bst.add(9)
+
+    expect(bst.root.data).toEqual(50)
+    expect(bst.root.left).toBeDefined()
+    expect(bst.root.left.data).toEqual(17)
+    expect(bst.root.right).toBeDefined()
+    expect(bst.root.right.data).toEqual(72)
+
+    expect(bst.min()).toEqual(9)
+    expect(bst.max()).toEqual(76)
+
+    expect(bst.search(76)).toBeDefined()
+    expect(bst.search(76).data).toEqual(76)
   })
   // test('Description', () => {})
 })
