@@ -193,3 +193,36 @@ export class Product {
 export const useHalfCoupon = (product) => { product.setPrice(product.getPrice() - (product.getPrice() * 0.5)) }
 export const useThirdCoupon = (product) => { product.setPrice(product.getPrice() - (product.getPrice() * 0.33)) }
 export const useFourthCoupon = (product) => { product.setPrice(product.getPrice() - (product.getPrice() * 0.25)) }
+
+// Create UserRepository and UserService classes to demonstrate Dependency Inversion Principle with constructor dependency injection
+export class UserService {
+  constructor (userRepository) {
+    this.userRepository = userRepository
+  }
+
+  // Create User
+  createUser = (user) => {
+    this.userRepository.save(user)
+  }
+
+  // Retrieve users
+  retrieveUsers = () => {
+    return this.userRepository.list()
+  }
+}
+
+export class UserRepository {
+  constructor () {
+    this.users = []
+  }
+
+  // Save user
+  save = (user) => {
+    this.users.push(user)
+  }
+
+  // List users
+  list = () => {
+    return this.users
+  }
+}

@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { UserFactory, ProcessManagerSingleton, PaymentGateway, ProjectIterator, ProjectEventProducer, ProjectAPIProxy, ChatRoom, Member, Product, useFourthCoupon, useThirdCoupon, useHalfCoupon } from '../../codes/patterns/patterns'
+import { UserFactory, ProcessManagerSingleton, PaymentGateway, ProjectIterator, ProjectEventProducer, ProjectAPIProxy, ChatRoom, Member, Product, useFourthCoupon, useThirdCoupon, useHalfCoupon, UserRepository, UserService } from '../../codes/patterns/patterns'
 import { VisaGateway, MastercardGateway, MTNMomoGateway, MOOVFloozGateway, Pay8Gateway } from '../../codes/patterns/patterns.utils'
 import { processes } from './patterns.data'
 
@@ -186,6 +186,23 @@ describe('Patterns Tests', () => {
 
     mlBook.accept(useFourthCoupon)
     expect(mlBook.getPrice()).toEqual(25.125)
+  })
+
+  test('Dependency Inversion Principle Tests with UserService and UserRepository classes', () => {
+    const repository = new UserRepository()
+    const service = new UserService(repository)
+
+    service.createUser(1)
+    service.createUser(2)
+    service.createUser(3)
+    service.createUser(4)
+
+    expect(service.retrieveUsers()).toHaveLength(4)
+    expect(service.retrieveUsers()).toContain(4)
+    expect(service.retrieveUsers()).toContain(3)
+    expect(service.retrieveUsers()).toContain(2)
+    expect(service.retrieveUsers()).toContain(1)
+    expect(service.retrieveUsers()).toEqual([1, 2, 3, 4])
   })
   // test('Description', () => {})
 })
