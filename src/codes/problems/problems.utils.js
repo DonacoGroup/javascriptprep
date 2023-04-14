@@ -167,3 +167,48 @@ export class Queue {
   // Take a peek at the item at the end of the queue
   tail = () => this.collection[this.collection.length - 1]
 }
+
+// Create a priority queue
+export class PriorityQueue extends Queue {
+  // eslint-disable-next-line no-useless-constructor
+  constructor () {
+    super()
+  }
+
+  // Contains item
+  has = (item) => {
+    if (!this.isEmpty()) {
+      for (let i = 0; i < this.collection.length; i++) {
+        const currentItem = this.collection.at(i)
+        if (currentItem.value === item.value && currentItem.priority === item.priority) {
+          return true
+        }
+      }
+    }
+    return false
+  }
+
+  // Add item to queue
+  enqueue = (item) => {
+    // If collection is empty simply push item to the collection
+    if (this.isEmpty()) {
+      this.collection.push(item)
+    } else {
+      // Otherwise
+      // Create flag to indicate whether item was added or not
+      let added = false
+      // For each item in collection if the item to insert has lower priority then isert the item right before it
+      this.collection.forEach((currentItem, index) => {
+        if (!added && item.priority < currentItem.priority) {
+          this.collection.splice(index, 0, item)
+          added = true
+        }
+      })
+      // If item was not added from previous operationon the collection simply push item to the collection (There was no item with greater priority than the item to insert)
+      if (!added) {
+        this.collection.push(item)
+      }
+    }
+    return true
+  }
+}

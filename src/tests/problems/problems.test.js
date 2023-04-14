@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import { problems } from '../../codes/problems/problems'
-import { Stack, Queue, CustomSet } from '../../codes/problems/problems.utils'
+import { Stack, Queue, PriorityQueue, CustomSet } from '../../codes/problems/problems.utils'
 
 describe('Problems Tests', () => {
   test('TripleAdd Function Problem Tests', () => {
@@ -136,6 +136,42 @@ describe('Problems Tests', () => {
     expect(customQueue.has(4)).toBeTruthy()
     expect(customQueue.items()).toHaveLength(2)
   })
-
+  test('Custom Priority Queue Implementation Tests with PriorityQueue class', () => {
+    const pQueue = new PriorityQueue()
+    expect(pQueue.items()).toHaveLength(0)
+    expect(pQueue.size()).toEqual(0)
+    expect(pQueue.isEmpty()).toBeTruthy()
+    expect(pQueue.has({ value: 1, priority: 0 })).toBeFalsy()
+    expect(pQueue.enqueue({ value: 1, priority: 0 })).toBeTruthy()
+    expect(pQueue.has({ value: 1, priority: 0 })).toBeTruthy()
+    expect(pQueue.isEmpty()).toBeFalsy()
+    expect(pQueue.items()).toHaveLength(1)
+    expect(pQueue.enqueue({ value: 2, priority: 1 })).toBeTruthy()
+    expect(pQueue.items()).toHaveLength(2)
+    expect(pQueue.enqueue({ value: 3, priority: 2 })).toBeTruthy()
+    expect(pQueue.items()).toHaveLength(3)
+    expect(pQueue.enqueue({ value: 4, priority: 1 })).toBeTruthy()
+    expect(pQueue.items()).toHaveLength(4)
+    expect(pQueue.enqueue({ value: 5, priority: 5 })).toBeTruthy()
+    expect(pQueue.items()).toHaveLength(5)
+    expect(pQueue.enqueue({ value: 6, priority: 4 })).toBeTruthy()
+    expect(pQueue.items()).toHaveLength(6)
+    expect(pQueue.enqueue({ value: 7, priority: 4 })).toBeTruthy()
+    expect(pQueue.items()).toHaveLength(7)
+    expect(pQueue.enqueue({ value: 8, priority: 4 })).toBeTruthy()
+    expect(pQueue.items()).toHaveLength(8)
+    expect(pQueue.enqueue({ value: 9, priority: 4 })).toBeTruthy()
+    expect(pQueue.items()).toHaveLength(9)
+    expect(pQueue.enqueue({ value: 10, priority: 0 })).toBeTruthy()
+    expect(pQueue.items()).toHaveLength(10)
+    expect(pQueue.enqueue({ value: 20, priority: 1 })).toBeTruthy()
+    expect(pQueue.items()).toHaveLength(11)
+    expect(pQueue.enqueue({ value: 30, priority: 2 })).toBeTruthy()
+    expect(pQueue.items()).toHaveLength(12)
+    expect(pQueue.size()).toEqual(12)
+    expect(pQueue.dequeue()).toEqual({ value: 1, priority: 0 })
+    expect(pQueue.peek()).toEqual({ value: 10, priority: 0 })
+    expect(pQueue.tail()).toEqual({ value: 5, priority: 5 })
+  })
   // test('Description', () => {})
 })
