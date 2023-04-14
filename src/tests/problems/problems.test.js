@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import { problems } from '../../codes/problems/problems'
-import { Stack } from '../../codes/problems/problems.utils'
+import { Stack, CustomSet } from '../../codes/problems/problems.utils'
 
 describe('Problems Tests', () => {
   test('TripleAdd Function Problem Tests', () => {
@@ -75,6 +75,42 @@ describe('Problems Tests', () => {
     expect(problems.solvePalindromeWithStack('A Santa, at NASA!')).toBeTruthy()
     expect(problems.solvePalindromeWithStack('Was it a car or a cat I saw?')).toBeTruthy()
     expect(problems.solvePalindromeWithStack('Madam, in Eden, I\'m Adam.')).toBeTruthy()
+  })
+  test('Custom Set Implementation Tests with CustomSet class', () => {
+    const customSet1 = new CustomSet()
+    expect(customSet1.add(1)).toBeTruthy()
+    expect(customSet1.add(2)).toBeTruthy()
+    expect(customSet1.items()).toHaveLength(2)
+    expect(customSet1.add(2)).toBeFalsy()
+    expect(customSet1.has(2)).toBeTruthy()
+    expect(customSet1.items()).toHaveLength(2)
+    expect(customSet1.has(3)).toBeFalsy()
+    expect(customSet1.add(3)).toBeTruthy()
+    expect(customSet1.items()).toHaveLength(3)
+    expect(customSet1.remove(3)).toBeTruthy()
+    expect(customSet1.remove(3)).toBeFalsy()
+    const customSet2 = new CustomSet()
+    expect(customSet2.add(3)).toBeTruthy()
+    expect(customSet2.add(4)).toBeTruthy()
+    expect(customSet2.add(5)).toBeTruthy()
+    expect(customSet2.add(6)).toBeTruthy()
+    expect(customSet2.add(7)).toBeTruthy()
+    expect(customSet2.add(8)).toBeTruthy()
+
+    expect(customSet1.union(customSet2)).toBeDefined()
+    expect(typeof customSet1.union(customSet2)).toBe('object')
+    expect(customSet1.union(customSet2).size()).toBe(8)
+
+    expect(customSet1.intersect(customSet2)).toBeDefined()
+    expect(typeof customSet1.intersect(customSet2)).toBe('object')
+    expect(customSet1.intersect(customSet2).size()).toBe(0)
+
+    expect(customSet1.differ(customSet2)).toBeDefined()
+    expect(typeof customSet1.differ(customSet2)).toBe('object')
+    expect(customSet1.differ(customSet2).size()).toBe(8)
+
+    expect(customSet1.subset(customSet2)).toBeFalsy()
+    expect(customSet1.subset(customSet1.union(customSet2))).toBeTruthy()
   })
   // test('Description', () => {})
 })
