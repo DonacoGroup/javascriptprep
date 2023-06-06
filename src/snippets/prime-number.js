@@ -32,4 +32,4 @@ testPrime(2)
 testPrime(3)
 testPrime(4)
 testPrime(5)
-
+// Complexity: O(n)
